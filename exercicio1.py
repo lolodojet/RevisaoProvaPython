@@ -61,9 +61,9 @@ def alterar_nome (lista, novo_nome, indice):
     else:
         print("Indice inválido!")
          
-def mostrar_nomes (lista, nome):
-    for i, MenuNomes in enumerate (lista):
-        print(MenuNomes)
+def mostrar_nomes (lista):
+    for nome in lista:
+        print(nome)
         
 while True:
     
@@ -87,22 +87,29 @@ while True:
             adicionar_nomes(MenuNomes, nome)
             print(f"O contato {nome} foi adicionado!")
             
-    if escolha == '2':
+    elif escolha == '2':
         nome = input("Diga o nome que quer remover: ")
         remover_nomes(MenuNomes, nome)
         print(f"O nome {nome} foi removido!")
         
-    if escolha == '3':
-        nome = input("Diga o nome que quer alterar: ")
-        indice = int(input("Digite o índice que quer alterar: "))
+    elif escolha == '3':
+        if MenuNomes:
+            for i, nome in enumerate (MenuNomes):
+                print(f"{i}: {nome}")
+
+            indice = int(input("Digite o indice do nome que quer alterar: "))
+            novo_nome = input("Digite o novo nome: ")
+            alterar_nome(MenuNomes, novo_nome, indice)
+            print(f"o nome {novo_nome} foi adicionado!")
+
+        else:
+            print("Não tem nenhum nome na lista")
         
-        alterar_nome(MenuNomes, nome, indice)
-        
-    if escolha == '4':
+    elif escolha == '4':
         if not MenuNomes:
             print("Nao tem nenhum nome na lista")
         else:
             mostrar_nomes(MenuNomes)
-    if escolha == '5':
+    elif escolha == '5':
         print("Saindo...")
         break
